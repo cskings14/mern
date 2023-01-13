@@ -1,33 +1,31 @@
 import { Router, Request, Response } from "express";
+const Workout = require('../models/workoutModel')
+const {
+    createWorkout,
+    getWorkouts,
+    getWorkout,
+    deleteWorkout,
+    updateWorkout
+
+} = require('../controllers/workoutController')
 
 const express = require('express');
 
 const router = express.Router()
 
 // This is the workout Listview component
-router.get('/', (req: Request, res: Response) => {
-    res.json({message: 'Get all workouts'});
-})
+router.get('/', getWorkouts);
 
 // Detail view for one workout
-router.get('/:id', (req: Request, res: Response) => {
-    res.json({message: 'view this workout'});
-})
+router.get('/:id', getWorkout);
 
 // Post a new workout
-router.post('/:id', (req: Request, res: Response) => {
-    res.json({message: 'post a new workout'});
-})
+router.post('/', createWorkout);
 
 // Delete an existing workout
-router.delete('/:id', (req: Request, res: Response) => {
-    res.json({message: 'delete a workout'});
-})
+router.delete('/:id', deleteWorkout);
 
 // Update an existing workout
-router.patch('/:id', (req: Request, res: Response) => {
-    res.json({message: 'Update this workout'});
-})
-
+router.patch('/:id', updateWorkout);
 
 module.exports = router;
